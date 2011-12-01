@@ -29,7 +29,11 @@ syntax match sectionTitleLine "^.*:\s*$" contains=sectionTitle
 syntax match sectionTitle "\S.*:\s*$"
 highlight sectionTitle guifg=white guibg=#51ABFF gui=bold,underline ctermfg=blue ctermbg=NONE cterm=bold,underline
 
-syntax match url "http:\/\/.*$"
-highlight url guifg=#845526 gui=underline
+" Hyperlinks
+syntax match hyperlink "\[\{2}[^][]*\(\]\[[^][]*\)\?\]\{2}" contains=hyperlinkBracketsLeft,hyperlinkURL,hyperlinkBracketsRight containedin=ALL
+syntax match hyperlinkBracketsLeft contained "\[\{2}" conceal
+syntax match hyperlinkURL contained "[^][]*\]\[" conceal
+syntax match hyperlinkBracketsRight contained "\]\{2}" conceal
+hi def link hyperlink Underlined
 
 let b:current_syntax = "task"

@@ -11,8 +11,14 @@ set cpo&vim
 function! Toggle_task_status()
 ruby << EOS
   line = VIM::Buffer.current.line
-  line = line.gsub(/^(\s*)(-TODO|\*DONE)/u) { $1 + ( $2 == '-TODO' ? '*DONE' : '-TODO' ) }
-  VIM::Buffer.current.line = line
+  #begin
+  #    require 'launchy'
+  #  URI.parse(line)
+  #  Launchy.open line
+  #rescue
+    line = line.gsub(/^(\s*)(-TODO|\*DONE)/u) { $1 + ( $2 == '-TODO' ? '*DONE' : '-TODO' ) }
+    VIM::Buffer.current.line = line
+  #end
 EOS
 endfunction
 
